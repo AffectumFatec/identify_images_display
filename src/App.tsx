@@ -1,5 +1,4 @@
 import useWebSocket from "react-use-websocket";
-
 import "./App.css";
 import { useState } from "react";
 
@@ -12,16 +11,16 @@ type AiplaneType = {
     status: string;
     refined_id: string;
     created_at: string;
-    image: string
-  }
+    image: string;
+  };
   history: {
     id: string;
     title: string;
     description: string;
     airplane_id: string;
-    user_id: string
+    user_id: string;
     created_at: string;
-  }[]
+  }[];
 };
 
 function App() {
@@ -37,48 +36,58 @@ function App() {
   });
 
   return (
-    <div className="bg-white border border-gray-200 flex justify-between px-3 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <div>
-        <img
-          className="rounded-t-lg bg-cover self-center max-w-lg mt-4"
-          src={airplaneInfos?.airplane.image}
-          alt=""
-        />
-
-        <div className="p-5 flex flex-col items-center ">
-          <a href="#">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {airplaneInfos?.airplane.refined_id}
-            </h5>
-          </a>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {airplaneInfos?.airplane.type}
-          </p>
-          <div className="mb-3 flex w-full justify-center gap-2 items-center font-normal text-gray-700 dark:text-gray-400">
-            {airplaneInfos?.airplane.status}
-            <p
-              className={`w-3 h-3 rounded-full ${airplaneInfos?.airplane.status == "PENDING" ? "bg-yellow-400" : "hidden"
-                }`}
-            ></p>
-            <p
-              className={`w-3 h-3 rounded-full ${airplaneInfos?.airplane.status == "BROKEN" ? "bg-red-400" : "hidden"
-                }`}
-            ></p>
-            <p
-              className={`w-3 h-3 rounded-full ${airplaneInfos?.airplane.status == "GOOD" ? "bg-green-400" : "hidden"
-                }`}
-            ></p>
+    <div className="bg-red-600">
+      <div className="bg-red-600 text-white py-2 text-center rounded-lg w-full">
+        <h1 className="text-2xl font-bold">ACME</h1>
+      </div>
+      <div className="h-screen w-full ml-0 flex justify-between px-3 shadow bg-black dark:bg-gray-800">
+        <div className="ml-full flex flex-col items-center">
+          <img
+            className="ml-0 rounded-t-lg bg-cover self-center max-w-lg mt-5 h-364"
+            src={airplaneInfos?.airplane.image}
+            alt=""
+          />
+          <div className="p-5 text-center">
+            <a href="#" className="text-white">
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {airplaneInfos?.airplane.refined_id}
+              </h5>
+            </a>
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              {airplaneInfos?.airplane.type}
+            </p>
+            <div className="flex justify-center items-center space-x-2">
+              {airplaneInfos?.airplane.status === "PENDING" && (
+                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+              )}
+              {airplaneInfos?.airplane.status === "BROKEN" && (
+                <div className="w-3 h-3 rounded-full bg-red-400"></div>
+              )}
+              {airplaneInfos?.airplane.status === "GOOD" && (
+                <div className="w-3 h-3 rounded-full bg-green-400"></div>
+              )}
+              <p className="text-sm font-normal text-gray-700 dark:text-gray-400">
+                {airplaneInfos?.airplane.status}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div>
-        <h1 className="text-2xl my-8 font-bold">Histórico de manutenção</h1>
-        {airplaneInfos?.history.map(h => (
-          <div className="shadow rounded border py-4 px-8 my-2 mx-2">
-            <h2 className="font-semibold">{h.title}</h2>
-            <p>{h.description}</p>
-          </div>
-        ))}
+        <div className="max-w-md p-4">
+          <h1 className="text-2xl my-4 font-bold text-gray-900 dark:text-white">
+            Histórico de Manutenção
+          </h1>
+          {airplaneInfos?.history.map((h) => (
+            <div
+              key={h.id}
+              className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 mb-4"
+            >
+              <h2 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">
+                {h.title}
+              </h2>
+              <p className="text-gray-700 dark:text-gray-400">{h.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
