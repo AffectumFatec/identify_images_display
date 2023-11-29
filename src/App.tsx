@@ -36,11 +36,7 @@ function App() {
   });
 
   return (
-    <div className="bg-red-600">
-      <div className="bg-red-600 text-white py-2 text-center rounded-lg w-full">
-        <h1 className="text-2xl font-bold">ACME</h1>
-      </div>
-      <div className="h-screen w-full ml-0 flex justify-between px-3 shadow bg-black dark:bg-gray-800">
+      <div className="roundedh-screen w-full ml-0 flex justify-between px-3 shadow bg-black dark:bg-gray-800">
         <div className="ml-full flex flex-col items-center">
           <img
             className="ml-0 rounded-t-lg bg-cover self-center max-w-lg mt-5 h-364"
@@ -57,13 +53,13 @@ function App() {
               {airplaneInfos?.airplane.type}
             </p>
             <div className="flex justify-center items-center space-x-2">
-              {airplaneInfos?.airplane.status === "PENDING" && (
+              {airplaneInfos?.airplane.status === "Em manutenção" && (
                 <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
               )}
-              {airplaneInfos?.airplane.status === "BROKEN" && (
+              {airplaneInfos?.airplane.status === "Quebrado" && (
                 <div className="w-3 h-3 rounded-full bg-red-400"></div>
               )}
-              {airplaneInfos?.airplane.status === "GOOD" && (
+              {airplaneInfos?.airplane.status === "Bom" && (
                 <div className="w-3 h-3 rounded-full bg-green-400"></div>
               )}
               <p className="text-sm font-normal text-gray-700 dark:text-gray-400">
@@ -89,7 +85,6 @@ function App() {
           ))}
         </div>
       </div>
-    </div>
   );
 }
 
